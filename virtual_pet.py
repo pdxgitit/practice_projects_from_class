@@ -24,6 +24,9 @@ class Animal(object):
             print "Game Over"
             sys.exit()
 
+    def speak(self):
+        return self.sound().upper()
+
     def will_attack(self):
         roll = random.randint(1, self.attack)
         if self.type == 'snake' or self.type == 'aligator':
@@ -45,9 +48,6 @@ class Animal(object):
         else:
             self.get_pet()
 
-    def level_up(self):
-        return self.experience >= 5
-
     def __init__(self):
         self.name = raw_input("Name: ")
         self.color = random.choice(COLORS)
@@ -68,6 +68,12 @@ class Aligator(Animal):
     attack = 3
     sound = "snap"
 
+def menu():
+    choice = raw_input("Choose action ([F]eed, [P]lay, [W]alk or [I]gnore): ").lower()
+    if choice in "fpwi":
+        pass
+    else:
+        return self.menu()
 
 def main():
     new_pet = Animal()
@@ -78,9 +84,8 @@ def main():
             print "\n" * 20
             print "{} is still {}. It's health is {}, experience is {}, happiness is {} and attack is {}.".format(new_pet.name, new_pet.color, new_pet.health, new_pet.experience, new_pet.happy, new_pet.attack)
             new_pet.start = time.time()
-    experience = 0
-    happy = 10
-    attack = 0
+        else:
+            menu()
 
 
 if __name__ == '__main__':
